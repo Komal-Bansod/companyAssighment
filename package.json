@@ -1,0 +1,28 @@
+{
+  "name": "companyassighment",
+  "version": "1.0.0",
+  "description": "Outshade - Context Setting\r Company Info\r Company website: https://www.outshade.in\r Requirement\r Event Management System (NodeJs + MySQL/MongoDB)\r User\r 01. Register (User can register)\r 02. Login (User login)\r 03. Logout (User logout)\r 04.Change Password (User can change his password)\r 05. Update Password (When request for reset password is done, to set new\r password)\r 06.Reset/Forgot Password (In API response send info regarding to update\r password)\r Event (Authentication required for doing operations on event)\r 01. Create (User can create Event)\r 02. Invite (Users) // when that user login in he can see his created event list and\r also events in which he is invited.\r 03. List (Invited users when login can see their created events as well as events in\r which they are invited in, also display creator name in list)\r 04.Following are the actions that need to be done on listing api\r a. pagination\r b. Sorting\r c. Date Filter\r d. Search Filter\r 05. Event Detail + list of users invited (API to get specific event and invites)\r 06.Event update (Event Update)\r Notes:\r - Consider models as per your knowledge\r - Create Postman for above APIs\r Agenda\r ● Understand participants' understanding about the requirement.\r ● Explain understanding and fill in the gaps in the requirement and the\r understanding.\r ● Discuss the roadmap to the solution\r ● Q & A\r Roadmap\r ● Two core models\r ○ User\r ○ Event\r ● Choice of database - mysql/mongodb. Go with mongodb.\r ● Model schemas - open ended from the client side. Probable schema from our\r end\r ○ User\r ■ Title\r ● Metadata, - { required, enum [Mr, Miss, Mrs]}\r ■ name/fullname\r ■ Email\r ● Metadata - { required, unique, valid email syntax}\r ■ Password\r ● Metadata - { required, use bcrypt }\r ■ createdAt\r ■ modifiedAt\r ■ resetPasswordToken\r ○ Event\r ■ name -> title\r ■ description\r ■ eventDate\r ■ createdBy -> userId\r ■ invitees [{invitee, invitedAt}]\r ● Data type - array of objects\r ● Object structure would be { invitee: ObjectId(userId),\r invitedAt: timestamp }\r ■ createdAt\r ■ modifiedAt\r ○ Reset password requests (optional and advanced)\r ■ userid\r ■ Email\r ■ Token\r ■ createdAt\r ■ modifiedAt\r ● API Strategy\r ○ User\r ■ User registration\r ■ User login\r ■ User logout (destroy JWT token)\r ■ Change password - authenticated user\r ■ Reset password (token)\r ■ Update password (set new password for the user)\r ○ Event (Protected)\r ■ Create event\r ■ Invite to event\r ■ List events (pagination, filter - date, search, sorting)\r ■ Update event (only the creator could update it)\r ■ Event detail\r ● Middleware Strategy based on JWT strategy\r ○ Authentication\r ○ Authorization\r ● Email (optional and advanced)\r ○ Nodemailer\r ○ Use a gmail test account for SMTP settings.\r Approach\r ● Keep the solution clean, simple and error free.\r ● Keep the solution under source control - Git, GitHub\r ○ Make commits at logical intervals.\r ○ Keep commit messages relatable and descriptive.\r Submission\r ● Git url unless the client requested it in a different format.\r ● Keep a README file for brief documentation.\r ● Postman collection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Komal-Bansod/companyAssighment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Komal-Bansod/companyAssighment/issues"
+  },
+  "homepage": "https://github.com/Komal-Bansod/companyAssighment#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.6",
+    "nodemon": "^2.0.19"
+  }
+}
