@@ -19,7 +19,7 @@ const authentication = async (req, res, next) => {
         console.log(req.UserId)
 
         next()
-    } catch (error) {
+     } catch (error) {
         
         res.status(500).send({ status: false, message: error.message })
     }
@@ -28,7 +28,7 @@ const authentication = async (req, res, next) => {
 
 const authorisation = async (req, res, next) => {
     try {
-        let token = req.headers['x-auth-key'];
+        let token = req.cookies['x-auth-key'];
         let validToken = jwt.verify(token, 'outshade')
         if (!validToken) return res.status(401).send({ error: "You are not authenticated user" })
 

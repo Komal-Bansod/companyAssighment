@@ -7,15 +7,16 @@ const middleware = require('../middelware/auth')
 
 router.post('/createUser', userController.createUserData)
 router.post('/login', userController.loginUser)
-router.post('/logout', userController.logOut)
-
+router.put('/logout', userController.logOut)
+router.put('/resetPassword/:userId', userController.resetPassword)
 
 
 /////////////
-router.post('/createEvent', eventController.createEvent)
-router.get('/eventDetails/:eventId', eventController.getEventById)
+router.post('/createEvent',middleware.authentication, eventController.createEvent)
+router.get('/eventDetails/:eventId',middleware.authentication,middleware.authorisation, eventController.getEventById)
 router.get('/events', eventController.getEvent)
-router.put('/updateEvent/:eventId', eventController.updateEvent)
+router.put('/updateEvent/:eventId',middleware.authentication,middleware.authorisation, eventController.updateEvent)
+
 
 
 
